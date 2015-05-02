@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def apiRequest(text)
-    user_key = "e43fbfacc061aea6adbfda140cc3e752" #put somewhere else
+    #user_key = "e43fbfacc061aea6adbfda140cc3e752" #put somewhere else
 
-    response_json = HTTParty.get("https://www.wanikani.com/api/v1.2/user/#{user_key}/#{text}")
+    response_json = HTTParty.get("https://www.wanikani.com/api/v1.2/user/#{current_user.api_key}/#{text}")
     begin
       my_hash = JSON.parse response_json.to_json, symbolize_names: true
     rescue
@@ -32,6 +32,10 @@ class UsersController < ApplicationController
 	end
 
   def error
+  end
+
+  def changeApiKey
+    current_user.api_key = params[:apiKey]
   end
 
   #put these helper methods in applicaiton controller
