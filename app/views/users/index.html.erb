@@ -1,0 +1,15 @@
+ <div class="container"> 
+  <p>WaniKani Username: <%= @username %></p>
+
+  <p>Kanji: </p>
+  <% @kanjiList.each do |v| %>
+  	<%= v[:character] %>
+  <% end %>
+  <p>Kanji Total: <%= @kanjiList.count %></p>
+
+  <p>Vocabulary: </p>
+  <% @vocabList[:general].each do |v| %>
+    <%= v[:character] %>
+  <% end %>
+  <p>Vocab Total: <%= @vocabList[:general].count %></p>
+</div>
